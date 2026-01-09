@@ -13,6 +13,10 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: terraform
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,3 +34,9 @@ jobs:
             -backend-config="key=terraform.tfstate" \
             -backend-config="region=${{ env.TF_VAR_aws_region }}" \
             -backend-config="encrypt=true"
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
