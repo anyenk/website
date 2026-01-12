@@ -34,3 +34,8 @@ data "aws_subnet" "public_b" {
   vpc_id = data.aws_vpc.main.id
 }
 
+resource "aws_eip" "wordpress" {
+  instance = aws_instance.wordpress.id
+  domain   = "vpc"
+}
+
