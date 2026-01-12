@@ -39,6 +39,7 @@ resource "aws_security_group" "wordpress" {
   ingress {
     from_port   = 443
     to_port     = 443
+    protocol    = "tcp"
     cidr_blocks = [
       "173.245.48.0/20",
       "103.21.244.0/22",
