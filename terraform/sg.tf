@@ -7,6 +7,7 @@ resource "aws_security_group" "wordpress" {
   ingress {
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = var.allowed_ssh_ips
   }
 
@@ -14,6 +15,7 @@ resource "aws_security_group" "wordpress" {
   ingress {
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = [
       "173.245.48.0/20",
       "103.21.244.0/22",
