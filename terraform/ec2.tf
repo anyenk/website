@@ -1,6 +1,6 @@
 
 resource "aws_instance" "wordpress" {
-  ami           = "ami-0d1ddd83282187d18" # Amazon Linux 2023 - sa-east-1
+  ami           = "ami-02e6c834d44f57b3e" # Amazon Linux 2023 - sa-east-1
   instance_type = "t3.micro"
   subnet_id     = data.aws_subnet.public_a.id
 
