@@ -1,19 +1,36 @@
-resource "aws_vpc" "this" {
-  cidr_block = "10.0.0.0/16"
 
-  tags = {
-    Name = "website-vpc"
+data "aws_vpc" "main" {
+  filter {
+    name   = "tag:Name"
+    values = ["prod-vpc"]
   }
 }
 
-resource "aws_subnet" "public" {
-  vpc_id                  = aws_vpc.this.id
-  cidr_block              = "10.0.1.0/24"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = "website-public-subnet"
+data "aws_subnet" "public_a" {
+  filter {
+    name   = "tag:Name"
+    values = ["prod-public-a"]
   }
+
+  filter {
+    name   = "availabilityZone"
+    values = ["sa-east-1a"]
+  }
+
+  vpc_id = data.aws_vpc.main.id
 }
 
+data "aws_subnet" "public_b" {
+  filter {
+    name   = "tag:Name"
+    values = ["prod-public-b"]
+  }
+
+  filter {
+    name   = "availabilityZone"
+    values = ["sa-east-1b"]
+  }
+
+  vpc_id = data.aws_vpc.main.id
+}
 
