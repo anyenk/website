@@ -7,7 +7,7 @@ resource "aws_security_group" "wordpress" {
   ingress {
     from_port   = 22
     to_port     = 22
-    cidr_blocks = ["TU_IP/32"] # Tu IP para administración
+    cidr_blocks = var.allowed_ssh_ips
   }
 
   # HTTP desde Cloudflare

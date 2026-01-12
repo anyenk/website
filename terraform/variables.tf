@@ -20,3 +20,11 @@ variable "cloudflare_zone" {
 variable "cloudflare_account_id" {
   type = string
 }
+
+variable "allowed_ssh_ips" {
+  type    = list(string)
+  default = [
+    "201.187.41.147/32",  # Anibal
+    "190.22.13.176/32",   # Benja
+  ]
+}
