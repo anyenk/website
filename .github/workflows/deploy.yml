@@ -16,6 +16,13 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    
+    env:
+      TF_VAR_aws_region: sa-east-1
+      TF_VAR_domain: ${{ secrets.DOMAIN }}
+      TF_VAR_cloudflare_token: ${{ secrets.CLOUDFLARE_TOKEN }}
+      TF_VAR_cloudflare_zone: ${{ secrets.CLOUDFLARE_ZONE }}
+      TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
     defaults:
       run:
@@ -29,12 +36,7 @@ jobs:
         uses: ./.github/actions/setup-env
         env:
           AWS_ROLE: arn:aws:iam::150457926438:role/website_actions
-          AWS_REGION: sa-east-1
-
-          TF_VAR_domain: ${{ secrets.DOMAIN }}
-          TF_VAR_cloudflare_token: ${{ secrets.CLOUDFLARE_TOKEN }}
-          TF_VAR_cloudflare_zone: ${{ secrets.CLOUDFLARE_ZONE }}
-          TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          AWS_REGION: ${{ env.TF_VAR_aws_region }}
 
       - name: Terraform Init
         run: |
