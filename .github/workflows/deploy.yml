@@ -23,6 +23,8 @@ jobs:
       TF_VAR_cloudflare_token: ${{ secrets.CLOUDFLARE_TOKEN }}
       TF_VAR_cloudflare_zone: ${{ secrets.CLOUDFLARE_ZONE }}
       TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      TF_VAR_wordpress_user: ${{ secrets.WORDPRESS_USER }}
+      TF_VAR_wordpress_password: ${{ secrets.WORDPRESS_PASSWORD }}
 
     defaults:
       run:
@@ -51,3 +53,9 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+      
+      # Usar SSH key para conectar al EC2 (opcional)
+      - name: Setup SSH Key
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/wordpress-key.pem
+          chmod 400 /tmp/wordpress-key.pem

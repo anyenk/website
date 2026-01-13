@@ -21,6 +21,14 @@ variable "cloudflare_account_id" {
   type = string
 }
 
+variable "wordpress_password" {
+  type = string
+}
+
+variable "wordpress_user" {
+  type = string
+}
+
 variable "allowed_ssh_ips" {
   type    = list(string)
   default = [
