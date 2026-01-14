@@ -33,6 +33,6 @@ variable "allowed_ssh_ips" {
   type    = list(string)
   default = [
     "201.187.41.147/32",  # Anibal
-    "162.120.186.108/32",   # Benja
+    "181.43.219.15/32",   # Benja
   ]
 }
